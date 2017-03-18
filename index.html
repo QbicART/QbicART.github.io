@@ -117,7 +117,7 @@
   cursor: pointer;
 }
 
-.login-checkbox: hover {
+.login-checkbox:hover {
   color: #663d15;
 }
 
@@ -155,7 +155,7 @@
   outline: none;
 }
 
-.login-form unput:focus {
+.login-form input:focus {
   border-color: #663d15;
 }
 
@@ -180,9 +180,9 @@
   <button class="modal-content-close" type="button" title="Закрыть"></button>
   <h2 class="modal-content-title">Личный кабинет</h2>
   <p>Введите свой логин и пароль.</p>
-  <form class="login-form"  action-"http://адрес" method="post">
-    <input class="icon-user" type="text" name="login" plaseholder="Логин">
-    <input class="icon-password" type="password" name="password" plaseholder="Пароль">
+  <form class="login-form"  action="https://qbicart.github.io/" method="post">
+    <input class="icon-user" type="text" name="login" plaseholder="Логин" required>
+    <input class="icon-password" type="password" name="password" plaseholder="Пароль" required>
     <label class="login-checkbox">
       <input type="checkbox" name="remember">
       <span class="checkbox-indicator"></span>
@@ -192,17 +192,211 @@
     <button class="btn" type="submit">Войти</button>
   </form>
   </div>
-  <script>
-  var link = document.querySelector(".login");
-  var popup = document.querySelector(".modal-content");
-  var close = document.querySelector(".modal-content-close");
-  link.addEventListener("click", function(event) {
-  popup.classList.add("modal-content-show");
-  });
-  close.addEventListener("click", function(event) {
-  event.preventDefault();
-  popup.classList.remove("modal-content-show");
-  });
-</script>
+ 
+    required>
+        <label class="login-checkbox">
+          <input type="checkbox" name="remember">
+          <span class="checkbox-indicator"></span>
+          Запомните меня
+        </label>
+        <a class="restore" href="#">Я забыл пароль!</a>
+        <button class="btn" type="submit">Войти</button>
+      </form>
+    </div>
+
+css:
+
+    .modal-content {
+      position: relative;
+      top: 120px;
+      left:50%;
+      
+      width: 300px;
+      margin-left: -230px;
+      padding: 50px 80px;
+      
+      color: #000000;
+      
+      background: #f8f3f0 url("img/pattern-white.jpg");
+      box-shadow: 0 30px 50px rgba(0, 0, 0, 0.7);
+    }
+    
+    .modal-content-close {
+      position: absolute;
+      top: 0;
+      right: -34px;
+      
+      width: 22px;
+      height: 22px;
+      
+      font-size: 0;
+      
+      background-color: transparent;
+      border: 0;
+      outline: 0;
+      cursor: pointer;
+    }
+    
+    .modal-content-close::before,
+    .modal-content-close::after {
+      content: "";
+      position: absolute;
+      top: 10px;
+      left: 2px;
+      
+      width: 19px;
+      height: 3px;
+      background-color: #d0d0d0;
+      border-radius: 1px;
+    }
+    
+    .modal-content-close::before {
+      transform: rotate(45deg);
+    }
+    
+    .modal-content-close::after {
+      transform: rotate(-45deg);
+    }
+    
+    .login-form input[type="text"],
+    .login-form input[type="password"] {
+      width: 236px;
+      margin: 0;
+      margin-bottom: 10px;
+      padding: 10px 20px;
+      padding-right: 40px;
+    
+      font-size: 14px;
+      line-height: 24px;
+      color: #000000;
+      text-transform: uppercase;
+      
+      background-color: #f9f6f3;
+      border: 2px solid #000000;
+      outline: none;
+    }
+    
+    .login-form input:focus {
+      border-color: #663d15;
+    }
+    
+    .login-form input.icon-user {
+      background-image: url("img/img.jpg");
+      background-repeat: no-repeat;
+    }
+    
+    .login-form input.icon-password {
+      background-image: url("img/img.jpg");
+      background-repeat: no-repeat;
+    }
+    
+    .login-form .restore{
+      float:right;
+      
+      color: #000000;
+    }
+    
+    .login-form .btn {
+      width: 100%;
+      margin-top: 15px;
+    }
+    
+    .login-checkbox input[type="checkbox"] {
+      display: none;
+    }
+    
+    .login-checkbox {
+      position: relative;
+      
+      paddin-left: 30px;
+      
+      cursor: pointer;
+    }
+    
+    .login-checkbox:hover {
+      color: #663d15;
+    }
+    
+    .login-checkbox input[type="checkbox"] + .checkbox-indicator {
+      position: absolute;
+      top: -3px;
+      left: 0;
+      
+      width: 17px;
+      height: 17px;
+      
+      border: 2px solid #000000;
+    }
+    
+    .login-checkbox input[type="checkbox"]:checked + + .checkbox-indicator::before,
+    .login-checkbox input[type="checkbox"]:checked + + .checkbox-indicator::after {
+      content: "";
+      position: absolute;
+      top: 8px;
+      left: 1px;
+      
+      width: 15px;
+      height: 2px;
+      
+      background-color: #000000;
+    }
+    
+    .login-checkbox input[type="checkbox"]:checked + .checkbox-indicator::before {
+      transform: rotate(45deg);
+    }
+    
+    .login-checkbox input[type="checkbox"]:checked + .checkbox-indicator::after {
+      transform: rotate(-45deg);
+    }
+
+
+Оверлей (полупрозрачный фон на всплывающем окне):
+
+----------
+    <div class="modal-overlay"></div>
+    
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      x-index: 10;
+      
+      widht: 100%;
+      height: 100%;
+      
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+Вызов всплывающего окна на JS:
+
+----------
+    <script>
+    
+      var link = document.querySelector(".login");
+      var popup = document.querySelector(".modal-content");
+      var btn = document.querySelector(".btn");
+      var login = popup.querySelector("[name=login]");
+      var password = popup.querySelector("[name=password]");
+      var form = popup.querySelector("form");
+      
+    
+      link.addEventListener("click", function(event) {
+      popup.classList.add("modal-content-show");
+      login.focus();
+      });
+      
+      btn.addEventListener("click", function(event) {
+      event.preventDefault();
+      popup.classList.remove("modal-content-show");
+      });
+      
+      form.addEventListener("submit", function(event) {
+      if (!login.value || !password.value) {
+      event.preventDefault();
+      console.log("Нужно ввести логин и пароль")
+      }
+      });
+      
+    </script>
 </body>
 </html>
