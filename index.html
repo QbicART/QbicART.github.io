@@ -195,8 +195,8 @@
     <script>
     
       var link = document.querySelector(".login");
-      var popup = document.querySelector(".modal-content");
-      var btn = document.querySelector(".btn");
+      var popup = document.querySelector(".modal-content-close");
+      var close = document.querySelector(".btn");
       var login = popup.querySelector("[name=login]");
       var password = popup.querySelector("[name=password]");
       var form = popup.querySelector("form");
@@ -207,7 +207,7 @@
       login.focus();
       });
       
-      btn.addEventListener("click", function(event) {
+      close.addEventListener("click", function(event) {
       event.preventDefault();
       popup.classList.remove("modal-content-show");
       });
